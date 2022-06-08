@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.car.app.R;
 import com.car.app.fragment.HomeFragment;
 import com.car.app.fragment.MyFragment;
+import com.car.app.model.CarItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

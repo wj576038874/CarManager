@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.car.app.R;
+import com.car.app.adapter.CarItemAdapter;
 
 /**
  * author: wenjie
@@ -18,6 +21,8 @@ import com.car.app.R;
  */
 public class HomeFragment extends Fragment {
 
+    private RecyclerView recyclerView;
+    private CarItemAdapter carItemAdapter;
 
     @Nullable
     @Override
@@ -28,5 +33,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        carItemAdapter = new CarItemAdapter();
+        recyclerView.setAdapter(carItemAdapter);
     }
 }
