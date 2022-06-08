@@ -34,6 +34,7 @@
     <list>
 
         <mapping class="com.car.app.model.CarItem" />
+        <mapping class="com.car.app.model.User" />
 
         <!-- <mapping class="com.litepaltest.model.Classroom" />
               <mapping class="com.litepaltest.model.Teacher" />

@@ -1,15 +1,22 @@
 package com.car.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.car.app.R;
+import com.car.app.activity.LoginActivity;
+import com.car.app.utils.SpUtils;
+
+import org.w3c.dom.Text;
 
 /**
  * author: wenjie
@@ -18,6 +25,10 @@ import com.car.app.R;
  */
 public class MyFragment extends Fragment {
 
+    private TextView tvName;
+    private TextView tvName_;
+    private Button btnReport;
+    private Button btnLogout;
 
     @Nullable
     @Override
@@ -28,5 +39,53 @@ public class MyFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tvName = view.findViewById(R.id.tv_name);
+        tvName_ = view.findViewById(R.id.tv_name_);
+        btnReport = view.findViewById(R.id.btn_report);
+        btnLogout = view.findViewById(R.id.btn_logout);
+
+        tvName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!SpUtils.getInstance().isLogin()) {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+            }
+        });
+
+        btnReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpUtils.getInstance().logout();
+                refreshStatus();
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshStatus();
+    }
+
+    private void refreshStatus() {
+        if (SpUtils.getInstance().isLogin()) {
+            tvName.setText(SpUtils.getInstance().getLoginUser());
+            tvName_.setVisibility(View.VISIBLE);
+            btnLogout.setVisibility(View.VISIBLE);
+            btnReport.setVisibility(View.VISIBLE);
+        } else {
+            tvName_.setVisibility(View.GONE);
+            btnLogout.setVisibility(View.GONE);
+            btnReport.setVisibility(View.GONE);
+            tvName.setText("点击登录");
+        }
     }
 }
