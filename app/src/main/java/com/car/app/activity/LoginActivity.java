@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void login(String name, String pwd) {
-        List<User> users = LitePal.select("name", "password").where("password=?", name).where("password=?", pwd).find(User.class);
+        List<User> users = LitePal.where("name=? and password=?",name,pwd).find(User.class);
         if (!users.isEmpty()) {
             SpUtils.getInstance().loginSuccess(users.get(0).getName());
             finish();

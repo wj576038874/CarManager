@@ -1,8 +1,10 @@
 package com.car.app.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,10 +27,17 @@ public class ReportActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_report);
 
+        EditText editText = findViewById(R.id.edit);
+
         findViewById(R.id.btn_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ReportActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(editText.getText().toString().trim())) {
+                    Toast.makeText(ReportActivity.this, "请输入你要提交的反馈", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ReportActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

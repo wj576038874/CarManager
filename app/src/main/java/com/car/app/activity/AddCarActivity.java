@@ -116,15 +116,22 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         carItem = new CarItem();
 
 
-        carItem.setGearbox(gearboxs[0]);
-        carItem.setLevel(levels[0]);
-        carItem.setStruct(structs[0]);
-        carItem.setDrive(drives[0]);
-        carItem.setColor(colors[0]);
-        carItem.setFuel(fules[0]);
-        carItem.setEngine(engines[0]);
+//        carItem.setGearbox(gearboxs[0]);
+//        carItem.setLevel(levels[0]);
+//        carItem.setStruct(structs[0]);
+//        carItem.setDrive(drives[0]);
+//        carItem.setColor(colors[0]);
+//        carItem.setFuel(fules[0]);
+//        carItem.setEngine(engines[0]);
     }
 
+    private int selectedGearboxIndex = -1;
+    private int selectedLevelIndex = -1;
+    private int selectedStructIndex = -1;
+    private int selectedDriveIndex = -1;
+    private int selectedColorIndex = -1;
+    private int selectedFuleIndex = -1;
+    private int selectedEnginesIndex = -1;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -132,10 +139,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.btn_gearbox:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(gearboxs, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(gearboxs, selectedGearboxIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setGearbox(gearboxs[which]);
+                                selectedGearboxIndex = which;
                                 btnGearbox.setText(gearboxs[which]);
                                 dialog.cancel();
                             }
@@ -144,10 +151,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_level:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(levels, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(levels, selectedLevelIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setLevel(levels[which]);
+                                selectedLevelIndex = which;
                                 btnLevel.setText(levels[which]);
                                 dialog.cancel();
                             }
@@ -156,10 +163,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_struct:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(structs, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(structs, selectedStructIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setStruct(structs[which]);
+                                selectedStructIndex = which;
                                 btnStruct.setText(structs[which]);
                                 dialog.cancel();
                             }
@@ -168,10 +175,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_drive:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(drives, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(drives, selectedDriveIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setDrive(drives[which]);
+                                selectedDriveIndex = which;
                                 btnDrive.setText(drives[which]);
                                 dialog.cancel();
                             }
@@ -180,10 +187,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_color:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(colors, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(colors, selectedColorIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setColor(colors[which]);
+                                selectedColorIndex = which;
                                 btnColor.setText(colors[which]);
                                 dialog.cancel();
                             }
@@ -192,10 +199,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_fule:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(fules, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(fules, selectedFuleIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setFuel(fules[which]);
+                                selectedFuleIndex = which;
                                 btnFule.setText(fules[which]);
                                 dialog.cancel();
                             }
@@ -204,10 +211,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_engine:
                 new AlertDialog.Builder(this)
-                        .setSingleChoiceItems(engines, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(engines, selectedEnginesIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                carItem.setEngine(engines[which]);
+                                selectedEnginesIndex = which;
                                 btnEngine.setText(engines[which]);
                                 dialog.cancel();
                             }
@@ -242,44 +249,65 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 carItem.setPrice(Float.parseFloat(price));
                 carItem.setFuelConsumption(Double.parseDouble(consumption));
 
-                if (TextUtils.isEmpty(carItem.getGearbox())) {
+                if (selectedGearboxIndex >= 0) {
+                    carItem.setGearbox(gearboxs[selectedGearboxIndex]);
+                } else {
                     Toast.makeText(this, "请选择变速箱", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(carItem.getLevel())) {
+
+                if (selectedLevelIndex >= 0) {
+                    carItem.setLevel(levels[selectedLevelIndex]);
+                } else {
                     Toast.makeText(this, "请选择级别", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(carItem.getStruct())) {
+
+                if (selectedStructIndex >= 0) {
+                    carItem.setStruct(structs[selectedStructIndex]);
+                } else {
                     Toast.makeText(this, "请选择结构", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(carItem.getDrive())) {
+
+                if (selectedDriveIndex >= 0) {
+                    carItem.setDrive(drives[selectedDriveIndex]);
+                } else {
                     Toast.makeText(this, "请选择驱动", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(carItem.getColor())) {
+
+
+                if (selectedColorIndex >= 0) {
+                    carItem.setColor(colors[selectedColorIndex]);
+                } else {
                     Toast.makeText(this, "请选择颜色", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(carItem.getFuel())) {
+
+                if (selectedFuleIndex >= 0) {
+                    carItem.setFuel(fules[selectedFuleIndex]);
+                } else {
                     Toast.makeText(this, "请选择燃料", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(carItem.getEngine())) {
+
+                if (selectedEnginesIndex >= 0) {
+                    carItem.setEngine(engines[selectedEnginesIndex]);
+                } else {
                     Toast.makeText(this, "请选择发动机", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (carImageAdapter.getData().isEmpty()) {
-                    Toast.makeText(this, "请添加照片", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 List<String> images = new LinkedList<>();
                 for (int i = 0; i < carImageAdapter.getData().size(); i++) {
                     if (!carImageAdapter.getData().get(i).equals("add")) {
                         images.add(carImageAdapter.getData().get(i));
                     }
+                }
+                if (images.isEmpty()) {
+                    Toast.makeText(this, "请添加照片", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 carItem.setImages(images);
                 carItem.save();

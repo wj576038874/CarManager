@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         CarItem carItem = new CarItem();
         carItem.setName("宝马5系 530Li 2021款 2.0T 自动 汽油 领先型M运动套装（国VI）");
-        carItem.setGearbox("AMT自动变速箱");
+        carItem.setGearbox("AMT");
         carItem.setLevel("S级");
         carItem.setLocation("广州");
         carItem.setPrice(45.2);

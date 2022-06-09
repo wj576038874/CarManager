@@ -22,8 +22,6 @@ import org.litepal.LitePal;
  */
 public class CarDetailActivity extends AppCompatActivity {
 
-    private int id;
-
     private ViewPager2 viewPager2;
     private TextView tv_gearbox;
     private TextView tv_location;
@@ -38,7 +36,7 @@ public class CarDetailActivity extends AppCompatActivity {
     private TextView tv_price;
     private TextView tv_name;
 
-    private DetailImageAdapter detailImageAdapter;
+    private TextView tv_position;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +45,7 @@ public class CarDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_car_detail);
 
-        id = getIntent().getIntExtra("id", 0);
+        int id = getIntent().getIntExtra("id", 0);
 
 
         CarItem carItem = LitePal.find(CarItem.class, id);
@@ -58,6 +56,7 @@ public class CarDetailActivity extends AppCompatActivity {
         }
 
         viewPager2 = findViewById(R.id.viewpager);
+        tv_position = findViewById(R.id.tv_position);
         tv_gearbox = findViewById(R.id.tv_gearbox);
         tv_location = findViewById(R.id.tv_location);
         tv_level = findViewById(R.id.tv_level);
@@ -71,10 +70,12 @@ public class CarDetailActivity extends AppCompatActivity {
         tv_name = findViewById(R.id.tv_name);
         tv_price = findViewById(R.id.tv_price);
 
-        detailImageAdapter = new DetailImageAdapter();
+        DetailImageAdapter detailImageAdapter = new DetailImageAdapter();
         viewPager2.setAdapter(detailImageAdapter);
 
         detailImageAdapter.setNewData(carItem.getImages());
+
+        tv_position.setText(1 + "/" + carItem.getImages().size());
 
         tv_name.setText(carItem.getName());
         tv_price.setText(carItem.getPrice() + "万");
@@ -88,6 +89,14 @@ public class CarDetailActivity extends AppCompatActivity {
         tv_flue.setText(carItem.getFuel());
         tv_engine.setText(carItem.getEngine());
         tv_youhao.setText(carItem.getFuelConsumption() + "升");
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tv_position.setText((position + 1) + "/" + carItem.getImages().size());
+            }
+        });
 
     }
 

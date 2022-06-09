@@ -34,7 +34,6 @@ public class CarItemAdapter extends BaseQuickAdapter<CarItem, BaseViewHolder> {
                 .setText(R.id.tv_mileage, item.getMileage() + "公里")
                 .setText(R.id.tv_price, item.getPrice() + "万");
         ImageView imageView = helper.getView(R.id.iv_cover);
-        Uri uri = Uri.parse(item.getImages().get(0));
         Glide.with(mContext)
                 .applyDefaultRequestOptions(RequestOptions.bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCorners(16))))
                 .load(Uri.parse(item.getImages().get(0)))
