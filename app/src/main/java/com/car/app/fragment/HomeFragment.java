@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.car.app.R;
+import com.car.app.activity.AddCarActivity;
 import com.car.app.activity.CarDetailActivity;
 import com.car.app.adapter.CarItemAdapter;
 import com.car.app.model.CarItem;
@@ -34,30 +35,30 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private CarItemAdapter carItemAdapter;
-
+    private View emptyView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CarItem carItem = new CarItem();
-        carItem.setName("宝马5系 530Li 2021款 2.0T 自动 汽油 领先型M运动套装（国VI）");
-        carItem.setGearbox("AMT");
-        carItem.setLevel("S级");
-        carItem.setLocation("广州");
-        carItem.setPrice(45.2);
-        carItem.setFuelConsumption(8.0);
-        carItem.setEngine("2.0T");
-        carItem.setMileage(12346);
-        carItem.setStruct("四门五座");
-        List<String> imgs = new ArrayList<>();
-        imgs.add("content://media/external_primary/images/media/103966");
-        imgs.add("content://media/external_primary/images/media/103965");
-        imgs.add("content://media/external_primary/images/media/103964");
-        carItem.setImages(imgs);
-        carItem.setColor("白色");
-        carItem.setDrive("四驱");
-        carItem.setFuel("汽油");
-        carItem.save();
+//        CarItem carItem = new CarItem();
+//        carItem.setName("奥迪Q5L 2021款 2.0T 自动 汽油 领先型M运动套装（国VI）");
+//        carItem.setGearbox("AMT");
+//        carItem.setLevel("S级");
+//        carItem.setLocation("广州");
+//        carItem.setPrice(45.2);
+//        carItem.setFuelConsumption(8.0);
+//        carItem.setEngine("2.0T");
+//        carItem.setMileage(12346);
+//        carItem.setStruct("四门五座");
+//        List<String> imgs = new ArrayList<>();
+//        imgs.add("content://media/external_primary/images/media/103966");
+//        imgs.add("content://media/external_primary/images/media/103965");
+//        imgs.add("content://media/external_primary/images/media/103964");
+//        carItem.setImages(imgs);
+//        carItem.setColor("白色");
+//        carItem.setDrive("四驱");
+//        carItem.setFuel("汽油");
+//        carItem.save();
     }
 
     @Nullable
@@ -71,6 +72,13 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        emptyView = LayoutInflater.from(getContext()).inflate(R.layout.empty_layout, recyclerView, false);
+        emptyView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AddCarActivity.class));
+            }
+        });
         carItemAdapter = new CarItemAdapter();
         recyclerView.setAdapter(carItemAdapter);
         carItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -91,6 +99,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void refresh() {
-        carItemAdapter.setNewData(LitePal.findAll(CarItem.class));
+        List<CarItem> carItems = LitePal.findAll(CarItem.class);
+        if (carItems.isEmpty()) {
+            carItemAdapter.setNewData(null);
+            carItemAdapter.setEmptyView(emptyView);
+        } else {
+            carItemAdapter.setNewData(carItems);
+        }
     }
 }

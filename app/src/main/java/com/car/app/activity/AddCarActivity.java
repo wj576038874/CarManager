@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.WindowDecorActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,6 +71,8 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setTitle("添加车辆");
         setContentView(R.layout.activity_add_car);
 
+        carItem = new CarItem();
+
         recyclerView = findViewById(R.id.rv_image);
         carImageAdapter = new CarImageAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -113,9 +117,6 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         });
 
 
-        carItem = new CarItem();
-
-
 //        carItem.setGearbox(gearboxs[0]);
 //        carItem.setLevel(levels[0]);
 //        carItem.setStruct(structs[0]);
@@ -143,7 +144,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedGearboxIndex = which;
-                                btnGearbox.setText(gearboxs[which]);
+                                btnGearbox.setText("变速箱：" + gearboxs[which]);
                                 dialog.cancel();
                             }
                         })
@@ -155,7 +156,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedLevelIndex = which;
-                                btnLevel.setText(levels[which]);
+                                btnLevel.setText("级别：" + levels[which]);
                                 dialog.cancel();
                             }
                         })
@@ -167,7 +168,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedStructIndex = which;
-                                btnStruct.setText(structs[which]);
+                                btnStruct.setText("结构：" + structs[which]);
                                 dialog.cancel();
                             }
                         })
@@ -179,7 +180,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedDriveIndex = which;
-                                btnDrive.setText(drives[which]);
+                                btnDrive.setText("驱动：" + drives[which]);
                                 dialog.cancel();
                             }
                         })
@@ -191,7 +192,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedColorIndex = which;
-                                btnColor.setText(colors[which]);
+                                btnColor.setText("颜色：" + colors[which]);
                                 dialog.cancel();
                             }
                         })
@@ -203,7 +204,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedFuleIndex = which;
-                                btnFule.setText(fules[which]);
+                                btnFule.setText("燃料：" + fules[which]);
                                 dialog.cancel();
                             }
                         })
@@ -215,7 +216,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedEnginesIndex = which;
-                                btnEngine.setText(engines[which]);
+                                btnEngine.setText("发动机：" + engines[which]);
                                 dialog.cancel();
                             }
                         })
