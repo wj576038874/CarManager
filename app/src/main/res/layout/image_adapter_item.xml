@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
+    android:layout_width="120dp"
     android:layout_height="100dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:foreground="?attr/selectableItemBackground"
     android:orientation="vertical">
 
@@ -9,7 +11,6 @@
         android:id="@+id/iv_cover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_add_24" />
 
 </LinearLayout>

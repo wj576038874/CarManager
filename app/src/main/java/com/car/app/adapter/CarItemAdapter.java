@@ -7,6 +7,10 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.car.app.R;
 import com.car.app.model.CarItem;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,8 +35,8 @@ public class CarItemAdapter extends BaseQuickAdapter<CarItem, BaseViewHolder> {
                 .setText(R.id.tv_price, item.getPrice() + "万");
         ImageView imageView = helper.getView(R.id.iv_cover);
         Uri uri = Uri.parse(item.getImages().get(0));
-        Log.e("asd" , uri.toString());
         Glide.with(mContext)
+                .applyDefaultRequestOptions(RequestOptions.bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCorners(16))))
                 .load(Uri.parse(item.getImages().get(0)))
                 .into(imageView);
     }

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.car.app.R;
 import com.car.app.activity.AddCarActivity;
 import com.car.app.activity.LoginActivity;
+import com.car.app.activity.ReportActivity;
 import com.car.app.utils.SpUtils;
 
 
@@ -29,6 +30,7 @@ public class MyFragment extends Fragment {
     private TextView tvName;
     private TextView tvName_;
     private Button btnReport;
+    private Button btnAdd;
     private Button btnLogout;
     private ImageView imageView;
 
@@ -44,8 +46,16 @@ public class MyFragment extends Fragment {
         tvName = view.findViewById(R.id.tv_name);
         tvName_ = view.findViewById(R.id.tv_name_);
         btnReport = view.findViewById(R.id.btn_report);
+        btnAdd = view.findViewById(R.id.btn_add);
         btnLogout = view.findViewById(R.id.btn_logout);
         imageView = view.findViewById(R.id.imageView);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AddCarActivity.class));
+            }
+        });
 
         tvName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +77,7 @@ public class MyFragment extends Fragment {
         btnReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AddCarActivity.class));
+                startActivity(new Intent(getActivity(), ReportActivity.class));
             }
         });
 

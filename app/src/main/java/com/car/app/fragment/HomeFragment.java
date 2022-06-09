@@ -41,12 +41,16 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         carItemAdapter = new CarItemAdapter();
         recyclerView.setAdapter(carItemAdapter);
-
-
-        Log.e("asd" , LitePal.findAll(CarItem.class).size()+"");
-        carItemAdapter.setNewData(LitePal.findAll(CarItem.class));
-
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
+    }
+
+    private void refresh() {
+        carItemAdapter.setNewData(LitePal.findAll(CarItem.class));
+    }
 }
