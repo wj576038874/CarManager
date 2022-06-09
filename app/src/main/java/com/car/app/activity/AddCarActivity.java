@@ -54,7 +54,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
     private CarItem carItem;
 
-    private final String[] gearboxs = new String[]{"AMT自动变速箱", "AT自动变速箱", "CVT无级变速箱", "DCT双离合变速箱"};
+    private final String[] gearboxs = new String[]{"AMT", "AT", "CVT", "DCT"};
     private final String[] levels = new String[]{"S级", "A级", "B级", "C级"};
     private final String[] structs = new String[]{"四门五座", "四门七座"};
     private final String[] drives = new String[]{"两驱", "四驱"};
