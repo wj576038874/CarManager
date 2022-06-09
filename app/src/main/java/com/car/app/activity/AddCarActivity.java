@@ -217,25 +217,30 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_add:
                 String name = editTextName.getText().toString().trim();
                 String location = editTextLocation.getText().toString().trim();
-                int mileage = Integer.parseInt(editTextMileage.getText().toString().trim());
-                int consumption = Integer.parseInt(editTextConsumption.getText().toString().trim());
-                float price = Float.parseFloat(etPrice.getText().toString().trim());
+                String mileage = editTextMileage.getText().toString().trim();
+                String consumption = editTextConsumption.getText().toString().trim();
+                String price = etPrice.getText().toString().trim();
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(location)) {
                     Toast.makeText(this, "请输入名字和地址", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mileage <= 0) {
+                if (TextUtils.isEmpty(mileage) || Integer.parseInt(mileage) <= 0) {
                     Toast.makeText(this, "请输入里程", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (consumption <= 0) {
+                if (TextUtils.isEmpty(consumption) || Double.parseDouble(consumption) <= 0) {
                     Toast.makeText(this, "请输入油耗", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(price) || Float.parseFloat(price) <= 0) {
+                    Toast.makeText(this, "请输入价格", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 carItem.setName(name);
                 carItem.setLocation(location);
-                carItem.setMileage(mileage);
-                carItem.setPrice(price);
+                carItem.setMileage(Integer.parseInt(mileage));
+                carItem.setPrice(Float.parseFloat(price));
+                carItem.setFuelConsumption(Double.parseDouble(consumption));
 
                 if (TextUtils.isEmpty(carItem.getGearbox())) {
                     Toast.makeText(this, "请选择变速箱", Toast.LENGTH_SHORT).show();

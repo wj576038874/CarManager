@@ -2,12 +2,18 @@ package com.car.app.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.car.app.R;
+import com.car.app.adapter.DetailImageAdapter;
+import com.car.app.model.CarItem;
+
+import org.litepal.LitePal;
 
 /**
  * author: wenjie
@@ -16,12 +22,73 @@ import com.car.app.R;
  */
 public class CarDetailActivity extends AppCompatActivity {
 
+    private int id;
+
+    private ViewPager2 viewPager2;
+    private TextView tv_gearbox;
+    private TextView tv_location;
+    private TextView tv_level;
+    private TextView tv_mileage;
+    private TextView tv_struct;
+    private TextView tv_drive;
+    private TextView tv_color;
+    private TextView tv_flue;
+    private TextView tv_engine;
+    private TextView tv_youhao;
+    private TextView tv_price;
+    private TextView tv_name;
+
+    private DetailImageAdapter detailImageAdapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("车辆详情");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_car_detail);
+
+        id = getIntent().getIntExtra("id", 0);
+
+
+        CarItem carItem = LitePal.find(CarItem.class, id);
+
+        if (carItem == null) {
+            finish();
+            return;
+        }
+
+        viewPager2 = findViewById(R.id.viewpager);
+        tv_gearbox = findViewById(R.id.tv_gearbox);
+        tv_location = findViewById(R.id.tv_location);
+        tv_level = findViewById(R.id.tv_level);
+        tv_mileage = findViewById(R.id.tv_mileage);
+        tv_struct = findViewById(R.id.tv_struct);
+        tv_drive = findViewById(R.id.tv_drive);
+        tv_color = findViewById(R.id.tv_color);
+        tv_flue = findViewById(R.id.tv_flue);
+        tv_engine = findViewById(R.id.tv_engine);
+        tv_youhao = findViewById(R.id.tv_youhao);
+        tv_name = findViewById(R.id.tv_name);
+        tv_price = findViewById(R.id.tv_price);
+
+        detailImageAdapter = new DetailImageAdapter();
+        viewPager2.setAdapter(detailImageAdapter);
+
+        detailImageAdapter.setNewData(carItem.getImages());
+
+        tv_name.setText(carItem.getName());
+        tv_price.setText(carItem.getPrice() + "万");
+        tv_gearbox.setText(carItem.getGearbox());
+        tv_location.setText(carItem.getLocation());
+        tv_level.setText(carItem.getLevel());
+        tv_mileage.setText(carItem.getMileage() + "公里");
+        tv_struct.setText(carItem.getStruct());
+        tv_drive.setText(carItem.getDrive());
+        tv_color.setText(carItem.getColor());
+        tv_flue.setText(carItem.getFuel());
+        tv_engine.setText(carItem.getEngine());
+        tv_youhao.setText(carItem.getFuelConsumption() + "升");
+
     }
 
 

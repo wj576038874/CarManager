@@ -102,10 +102,12 @@ public class MyFragment extends Fragment {
             tvName_.setVisibility(View.VISIBLE);
             btnLogout.setVisibility(View.VISIBLE);
             btnReport.setVisibility(View.VISIBLE);
+            btnAdd.setVisibility(View.VISIBLE);
         } else {
             tvName_.setVisibility(View.GONE);
             btnLogout.setVisibility(View.GONE);
             btnReport.setVisibility(View.GONE);
+            btnAdd.setVisibility(View.GONE);
             tvName.setText("点击登录");
         }
     }
