@@ -31,7 +31,7 @@ public class CarImageAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         ImageView imageView = helper.getView(R.id.iv_cover);
         if (item.equals("add")) {
             Glide.with(mContext)
-                    .load(R.drawable.ic_baseline_add_24)
+                    .load(R.drawable.ic_image_add)
                     .into(imageView);
         } else {
             Glide.with(mContext)

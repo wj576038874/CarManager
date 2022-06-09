@@ -24,7 +24,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="16dp"
-                android:hint="请输入车名">
+                android:hint="请输入车名"
+                app:startIconDrawable="@drawable/ic_car_name">
 
 
                 <EditText
@@ -41,7 +42,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="请输入价格">
+                android:hint="请输入价格"
+                app:startIconDrawable="@drawable/ic_car_price">
 
 
                 <EditText
@@ -58,7 +60,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="请输入所在地：北京、广州...">
+                android:hint="请输入所在地：北京、广州..."
+                app:startIconDrawable="@drawable/ic_car_location">
 
 
                 <EditText
@@ -75,7 +78,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="请输入里程：1000">
+                android:hint="请输入里程：1000"
+                app:startIconDrawable="@drawable/ic_car_mileage">
 
 
                 <EditText
@@ -92,7 +96,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="请输入油耗">
+                android:hint="请输入油耗"
+                app:startIconDrawable="@drawable/ic_car_youhao">
 
 
                 <EditText

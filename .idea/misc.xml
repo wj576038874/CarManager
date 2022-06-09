@@ -7,9 +7,14 @@
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/bg_position.xml" value="0.197" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.197" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.197" />
+        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_car_name.xml" value="0.197" />
+        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_car_price.xml" value="0.197" />
+        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_home.xml" value="0.197" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_launcher_background.xml" value="0.197" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.197" />
-        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/layout/activity_add_car.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_mileage.xml" value="0.197" />
+        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/drawable/ic_price.xml" value="0.197" />
+        <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/layout/activity_add_car.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/layout/activity_car_detail.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/CarManager/app/src/main/res/layout/activity_main.xml" value="0.33" />
