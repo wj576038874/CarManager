@@ -1,6 +1,7 @@
 package com.car.app.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.car.app.R;
 import com.car.app.adapter.CarItemAdapter;
+import com.car.app.model.CarItem;
+
+import org.litepal.LitePal;
 
 /**
  * author: wenjie
@@ -37,5 +41,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         carItemAdapter = new CarItemAdapter();
         recyclerView.setAdapter(carItemAdapter);
+
+
+        Log.e("asd" , LitePal.findAll(CarItem.class).size()+"");
+        carItemAdapter.setNewData(LitePal.findAll(CarItem.class));
+
     }
+
+
 }

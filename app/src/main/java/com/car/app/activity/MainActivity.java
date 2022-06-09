@@ -2,12 +2,16 @@ package com.car.app.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.car.app.R;
 import com.car.app.fragment.HomeFragment;
@@ -33,8 +37,18 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_menu);
 
         homeFragment = new HomeFragment();
+        myFragment = new MyFragment();
         mCurrentFragment = homeFragment;
-        switchContent(homeFragment);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.content, homeFragment)
+                .add(R.id.content, myFragment)
+                .hide(myFragment)
+                .show(mCurrentFragment)
+                .commitAllowingStateLoss();
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -45,9 +59,6 @@ public class MainActivity extends AppCompatActivity {
                         switchContent(homeFragment);
                         return true;
                     case R.id.menu_my:
-                        if (myFragment == null) {
-                            myFragment = new MyFragment();
-                        }
                         switchContent(myFragment);
                         return true;
                 }
@@ -56,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "请允许存储权限", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     /**
      * 修改显示的内容 不会重新加载

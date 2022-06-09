@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.car.app.R;
+import com.car.app.activity.AddCarActivity;
 import com.car.app.activity.LoginActivity;
 import com.car.app.utils.SpUtils;
 
-import org.w3c.dom.Text;
 
 /**
  * author: wenjie
@@ -29,6 +30,7 @@ public class MyFragment extends Fragment {
     private TextView tvName_;
     private Button btnReport;
     private Button btnLogout;
+    private ImageView imageView;
 
     @Nullable
     @Override
@@ -43,6 +45,7 @@ public class MyFragment extends Fragment {
         tvName_ = view.findViewById(R.id.tv_name_);
         btnReport = view.findViewById(R.id.btn_report);
         btnLogout = view.findViewById(R.id.btn_logout);
+        imageView = view.findViewById(R.id.imageView);
 
         tvName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +55,19 @@ public class MyFragment extends Fragment {
                 }
             }
         });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!SpUtils.getInstance().isLogin()) {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+            }
+        });
 
         btnReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                startActivity(new Intent(getActivity(), AddCarActivity.class));
             }
         });
 

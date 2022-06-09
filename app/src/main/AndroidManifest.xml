@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.car.app">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -26,6 +29,7 @@
 
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.AddCarActivity"/>
     </application>
 
 </manifest>

@@ -36,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("注册");
         setContentView(R.layout.activity_register);
 
         btnRegister = findViewById(R.id.btn_register);

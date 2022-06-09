@@ -41,8 +41,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("登录");
+        setContentView(R.layout.activity_login);
 
         btnRegister = findViewById(R.id.btn_register);
         btnLogin = findViewById(R.id.btn_login);
