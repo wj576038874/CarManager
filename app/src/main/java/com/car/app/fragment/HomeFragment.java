@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.car.app.R;
 import com.car.app.activity.AddCarActivity;
 import com.car.app.activity.CarDetailActivity;
+import com.car.app.activity.LoginActivity;
 import com.car.app.adapter.CarItemAdapter;
 import com.car.app.model.CarItem;
+import com.car.app.utils.SpUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import org.litepal.LitePal;
@@ -76,7 +78,11 @@ public class HomeFragment extends Fragment {
         emptyView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AddCarActivity.class));
+                if (SpUtils.getInstance().isLogin()){
+                    startActivity(new Intent(getActivity(), AddCarActivity.class));
+                }else {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
             }
         });
         carItemAdapter = new CarItemAdapter();
