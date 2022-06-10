@@ -32,6 +32,7 @@
         <activity android:name=".activity.AddCarActivity" />
         <activity android:name=".activity.CarDetailActivity" />
         <activity android:name=".activity.ReportActivity" />
+        <activity android:name=".activity.OwnerActivity" />
     </application>
 
 </manifest>

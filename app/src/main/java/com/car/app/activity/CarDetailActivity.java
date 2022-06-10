@@ -1,5 +1,6 @@
 package com.car.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,8 +110,10 @@ public class CarDetailActivity extends AppCompatActivity {
         btn_show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_owner.setText("姓名：" + carItem.getCarOwner());
-                tv_phone.setText("电话：" + carItem.getPhoneNumber());
+                Intent intent = new Intent(CarDetailActivity.this, OwnerActivity.class);
+                intent.putExtra("owner", carItem.getCarOwner());
+                intent.putExtra("phone", carItem.getPhoneNumber());
+                startActivity(intent);
             }
         });
 
