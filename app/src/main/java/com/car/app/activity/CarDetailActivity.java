@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.car.app.R;
 import com.car.app.adapter.DetailImageAdapter;
 import com.car.app.model.CarItem;
+import com.car.app.utils.SpUtils;
 
 import org.litepal.LitePal;
 
@@ -110,10 +111,14 @@ public class CarDetailActivity extends AppCompatActivity {
         btn_show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CarDetailActivity.this, OwnerActivity.class);
-                intent.putExtra("owner", carItem.getCarOwner());
-                intent.putExtra("phone", carItem.getPhoneNumber());
-                startActivity(intent);
+                if (SpUtils.getInstance().isLogin()) {
+                    Intent intent = new Intent(CarDetailActivity.this, OwnerActivity.class);
+                    intent.putExtra("owner", carItem.getCarOwner());
+                    intent.putExtra("phone", carItem.getPhoneNumber());
+                    startActivity(intent);
+                } else {
+                    startActivity(new Intent(CarDetailActivity.this, LoginActivity.class));
+                }
             }
         });
 
