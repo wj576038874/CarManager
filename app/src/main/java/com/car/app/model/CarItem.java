@@ -49,6 +49,27 @@ public class CarItem extends LitePalSupport {
 
     private double price;
 
+    private String carOwner;
+
+    private String phoneNumber;
+
+
+    public String getCarOwner() {
+        return carOwner;
+    }
+
+    public void setCarOwner(String carOwner) {
+        this.carOwner = carOwner;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }

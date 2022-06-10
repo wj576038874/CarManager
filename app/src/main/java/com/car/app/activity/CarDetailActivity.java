@@ -2,6 +2,8 @@ package com.car.app.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,9 @@ public class CarDetailActivity extends AppCompatActivity {
     private TextView tv_youhao;
     private TextView tv_price;
     private TextView tv_name;
+    private TextView tv_owner;
+    private TextView tv_phone;
+    private Button btn_show;
 
     private TextView tv_position;
 
@@ -56,6 +61,9 @@ public class CarDetailActivity extends AppCompatActivity {
         }
 
         viewPager2 = findViewById(R.id.viewpager);
+        tv_owner = findViewById(R.id.tv_owner);
+        tv_phone = findViewById(R.id.tv_phone);
+        btn_show = findViewById(R.id.btn_show);
         tv_position = findViewById(R.id.tv_position);
         tv_gearbox = findViewById(R.id.tv_gearbox);
         tv_location = findViewById(R.id.tv_location);
@@ -95,6 +103,14 @@ public class CarDetailActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 tv_position.setText((position + 1) + "/" + carItem.getImages().size());
+            }
+        });
+
+        btn_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_owner.setText("姓名：" + carItem.getCarOwner());
+                tv_phone.setText("电话：" + carItem.getPhoneNumber());
             }
         });
 

@@ -90,6 +90,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,6 +106,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="请输入车主姓名"
+                app:startIconDrawable="@drawable/ic_car_owner">
+
+
+                <EditText
+                    android:id="@+id/et_owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="请输入车主电话"
+                app:startIconDrawable="@drawable/ic_car_phone">
+
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,12 +244,19 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/btn_add"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_margin="16dp"
-        android:paddingLeft="12dp"
-        android:text="添加车辆" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_margin="16dp"
+            android:text="添加车辆" />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </LinearLayout>

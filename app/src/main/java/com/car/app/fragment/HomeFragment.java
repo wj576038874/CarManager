@@ -39,9 +39,9 @@ public class HomeFragment extends Fragment {
     private CarItemAdapter carItemAdapter;
     private View emptyView;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
 //        CarItem carItem = new CarItem();
 //        carItem.setName("奥迪Q5L 2021款 2.0T 自动 汽油 领先型M运动套装（国VI）");
 //        carItem.setGearbox("AMT");
@@ -60,8 +60,10 @@ public class HomeFragment extends Fragment {
 //        carItem.setColor("白色");
 //        carItem.setDrive("四驱");
 //        carItem.setFuel("汽油");
+//        carItem.setCarOwner("asd");
+//        carItem.setPhoneNumber("12345678901");
 //        carItem.save();
-    }
+//    }
 
     @Nullable
     @Override

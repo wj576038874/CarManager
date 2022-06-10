@@ -50,6 +50,8 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
     private EditText editTextMileage;
     private EditText editTextConsumption;
     private EditText etPrice;
+    private EditText etOwner;
+    private EditText etPhone;
 
     private RecyclerView recyclerView;
     private CarImageAdapter carImageAdapter;
@@ -81,6 +83,8 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
         editTextName = findViewById(R.id.et_name);
         etPrice = findViewById(R.id.et_price);
+        etOwner = findViewById(R.id.et_owner);
+        etPhone = findViewById(R.id.et_phone);
         editTextLocation = findViewById(R.id.et_location);
         editTextMileage = findViewById(R.id.et_mileage);
         editTextConsumption = findViewById(R.id.et_fuelConsumption);
@@ -228,6 +232,8 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 String mileage = editTextMileage.getText().toString().trim();
                 String consumption = editTextConsumption.getText().toString().trim();
                 String price = etPrice.getText().toString().trim();
+                String owner = etOwner.getText().toString().trim();
+                String phone = etPhone.getText().toString().trim();
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(location)) {
                     Toast.makeText(this, "请输入名字和地址", Toast.LENGTH_SHORT).show();
                     return;
@@ -244,8 +250,19 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(this, "请输入价格", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (TextUtils.isEmpty(owner)) {
+                    Toast.makeText(this, "请输入车主姓名", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(phone)) {
+                    Toast.makeText(this, "请输入车主电话", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 carItem.setName(name);
                 carItem.setLocation(location);
+                carItem.setCarOwner(owner);
+                carItem.setPhoneNumber(phone);
                 carItem.setMileage(Integer.parseInt(mileage));
                 carItem.setPrice(Float.parseFloat(price));
                 carItem.setFuelConsumption(Double.parseDouble(consumption));
