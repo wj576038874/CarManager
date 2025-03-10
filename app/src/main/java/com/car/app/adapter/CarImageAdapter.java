@@ -36,7 +36,7 @@ public class CarImageAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         } else {
             Glide.with(mContext)
                     .applyDefaultRequestOptions(RequestOptions.bitmapTransform(new MultiTransformation<>(new CenterCrop(),new RoundedCorners(16))))
-                    .load(Uri.parse(item))
+                    .load(item)
                     .into(imageView);
         }
     }

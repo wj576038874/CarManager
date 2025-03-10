@@ -1,11 +1,14 @@
 package com.car.app.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +29,10 @@ import com.car.app.adapter.CarImageAdapter;
 import com.car.app.model.CarItem;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -330,6 +337,8 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                 carItem.setImages(images);
                 carItem.save();
                 Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this , MainActivity.class));
+                finish();
                 break;
         }
     }
@@ -341,7 +350,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         if (resultCode != RESULT_OK || data == null || requestCode != 100) {
             return;
         }
-        carImageAdapter.addData(0, data.getData().toString());
+        File file = copyFileToInternal(this, data.getData());
+        if (file != null){
+            carImageAdapter.addData(0, file.getAbsolutePath());
+        }
     }
 
     @Override
@@ -349,4 +361,21 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         finish();
         return super.onOptionsItemSelected(item);
     }
+
+    public static File copyFileToInternal(Context context, Uri uri) {
+        File destination = new File(context.getCacheDir(), System.currentTimeMillis() + ".jpg");
+        try (InputStream inputStream = context.getContentResolver().openInputStream(uri);
+             FileOutputStream outputStream = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return destination;
+    }
+
 }

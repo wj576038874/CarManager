@@ -26,7 +26,7 @@ public class DetailImageAdapter extends BaseQuickAdapter<String, BaseViewHolder>
     protected void convert(@NonNull BaseViewHolder helper, String item) {
         ImageView imageView = helper.getView(R.id.iv_cover);
         Glide.with(mContext)
-                .load(Uri.parse(item))
+                .load(item)
                 .into(imageView);
     }
 }
