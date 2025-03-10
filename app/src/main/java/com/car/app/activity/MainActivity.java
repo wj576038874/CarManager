@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         switchContent(homeFragment);
+        bottomNavigationView.setSelectedItemId(R.id.menu_home);
     }
 
     @Override
